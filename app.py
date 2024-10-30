@@ -201,6 +201,8 @@ def afficher_page_creation():
 
 
 
+import streamlit as st
+
 def afficher_page_galerie():
     st.markdown("<h1>Galerie de Pièces en PDF 🎭</h1>", unsafe_allow_html=True)
     st.write("Cliquez sur une pièce pour l'ouvrir dans un nouvel onglet.")
