@@ -171,11 +171,12 @@ def afficher_page_inscription():
 # Page de connexion
 def afficher_page_connexion():
     st.markdown("<h1>Connexion</h1>", unsafe_allow_html=True)
-    if st.button("Créer un compte"):
-        st.session_state.page = "inscription"
     
+    # Champs de connexion
     username = st.text_input("Nom d'utilisateur")
     password = st.text_input("Mot de passe", type="password")
+    
+    # Bouton de connexion
     if st.button("Se connecter"):
         user = authenticate(username, password)
         if user:
@@ -183,6 +184,11 @@ def afficher_page_connexion():
             st.session_state.page = "Créer une Pièce"
         else:
             st.error("Nom d'utilisateur ou mot de passe incorrect")
+
+    # Bouton "Créer un compte" sous le bouton de connexion
+    if st.button("Créer un compte"):
+        st.session_state.page = "inscription"
+
 
 # Page de création de pièce
 def afficher_page_creation():
