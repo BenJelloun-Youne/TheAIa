@@ -3,6 +3,7 @@ from sqlalchemy import create_engine, Column, Integer, String, Text, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 
+
 # Configuration de la page
 st.set_page_config(page_title="Théâtre AI", page_icon="🎭", layout="centered")
 
@@ -198,19 +199,37 @@ def afficher_page_creation():
         session.commit()
         st.success("Votre création a été enregistrée dans la base de données !")
 
-# Page de la galerie avec résumés
+
+
 def afficher_page_galerie():
     st.markdown("<h1>Galerie de Pièces en PDF 🎭</h1>", unsafe_allow_html=True)
     st.write("Cliquez sur une pièce pour l'ouvrir dans un nouvel onglet.")
+
+    # Liste des pièces avec le lien brut GitHub pour chaque PDF
     pieces = [
-        {"titre": "Les Dieux Réincarnés", "resume": "Dans un monde en déclin, les anciens dieux se battent contre des forces modernes qui menacent leur existence.", "lien": "/path/to/dieux_reincarnes.pdf"},
-        {"titre": "L'Artefact du Temps", "resume": "Un roi grec découvre un artefact mystérieux qui manipule le temps, bouleversant les civilisations qu’il explore.", "lien": "/path/to/artefact_temps.pdf"},
-        {"titre": "La Prophétie des Mages", "resume": "Dans un royaume lointain, la prophétie d’un mage annonce des bouleversements pour le futur.", "lien": "/path/to/prophetie_mages.pdf"}
+        {
+            "titre": "Les Dieux Réincarnés",
+            "resume": "Dans un monde en déclin, les anciens dieux se battent contre des forces modernes qui menacent leur existence.",
+            "lien": "https://raw.githubusercontent.com/BenJelloun-Youne/TheAIa/main/dieux_reincarnes.pdf"
+        },
+        {
+            "titre": "L'Artefact du Temps",
+            "resume": "Un roi grec découvre un artefact mystérieux qui manipule le temps, bouleversant les civilisations qu’il explore.",
+            "lien": "https://raw.githubusercontent.com/BenJelloun-Youne/TheAIa/main/artefact_temps.pdf"
+        },
+        {
+            "titre": "La Prophétie des Mages",
+            "resume": "Dans un royaume lointain, la prophétie d’un mage annonce des bouleversements pour le futur.",
+            "lien": "https://raw.githubusercontent.com/BenJelloun-Youne/TheAIa/main/prophetie_mages.pdf"
+        }
     ]
+
     for piece in pieces:
-        with st.container():
-            st.markdown(f"<div class='gallery-card'><p class='gallery-title'>{piece['titre']}</p><p>{piece['resume']}</p></div>", unsafe_allow_html=True)
-            st.markdown(f"[📖 Ouvrir {piece['titre']}]({piece['lien']})", unsafe_allow_html=True)
+        st.markdown(f"### {piece['titre']}")
+        st.write(piece["resume"])
+        st.markdown(f"[📖 Ouvrir {piece['titre']}]({piece['lien']}){{:target='_blank'}}", unsafe_allow_html=True)
+
+
 
 # Page de l'historique
 def afficher_page_historique():
