@@ -227,7 +227,7 @@ def afficher_page_galerie():
     for piece in pieces:
         st.markdown(f"### {piece['titre']}")
         st.write(piece["resume"])
-        st.markdown(f"[📖 Ouvrir {piece['titre']}]({piece['lien']}){{:target='_blank'}}", unsafe_allow_html=True)
+        st.markdown(f"[📖 Ouvrir {piece['titre']}]({piece['lien']})", unsafe_allow_html=True)
 
 
 
